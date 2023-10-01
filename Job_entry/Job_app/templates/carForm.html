@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="style.css">
+<title>Car Insurance Form</title>
+</head>
+<body>
+<div class="row">
+  <div class="col-75">
+    <div class="container">
+      <center><h2>Car Insurance Form</h2></center>
+      <form action="submit_phpcrm_form.php" method="POST">
+        <div class="row">
+          <div class="col-50">
+            <input type="text" id="name" required  name="name" placeholder="Name">  
+          </div>
+          </div>
+          <div class="row">
+            <div class="col-50">
+                <input type="email" name="email" required placeholder="Email">
+            </div>
+            <div class="col-50">
+               <input type="number" name="phone" required placeholder="Phone">
+           </div>
+           </div>
+            <div class="row">
+              <div class="col-50">
+                <input type="text" name="primary_name" required placeholder="Who will be the primary driver of this vehicle?">
+              </div>     
+         </div>
+         <div class="row">
+            <div class="col-50">
+  
+              <input type="text" id="vehicle_model" name="vehicle_model" required placeholder="Vehicle Model">  
+            </div>
+            <div class="row">
+                <div class="col-50">
+                  <input type="text" id="License Number" name="license_number" required placeholder="License Number">  
+                </div>
+        <div class="row">
+          <div class="col-50">
+            How far is the primary driver's commute one way?<br><br>
+               <input type="radio" name="commute_one_way" value="Pleasure use only"> Pleasure use only<br><br>
+               <input type="radio" name="commute_one_way" value="Less than 3 miles"> Less than 3 miles<br><br>
+               <input type="radio" name="commute_one_way" value="Less than 10 miles"> Less than 10 miles<br><br>
+               <input type="radio" name="commute_one_way" value="More than 10 miles"> More than 10 miles<br><br>
+          </div>
+          <div class="col-50">
+             Where do you park your car?<br><br>
+            <input type="radio" name="where_do_park" value="A private garage"> A private garage<br><br>
+            <input type="radio" name="where_do_park" value="The driveway"> The driveway<br><br>
+            <input type="radio" name="where_do_park" value="A quiet residential street"> A quiet residential street<br><br>
+            <input type="radio" name="where_do_park" value="Other"> Other<br><br>
+          </div>
+          </div>
+    
+          <div class="row">
+            <div class="col-50">
+                Do you want Comprehensive and Collision coverage for this vehicle?<br><br>
+                <input type="radio" name="comprehensive_collision" value="Yes"> Yes<br><br>
+                <input type="radio" name="comprehensive_collision" value="No">  No<br><br>
+            </div>
+            <div class="col-50">
+                 Is this vehicle owned, leased, or financed?<br><br>
+                 <input type="radio" name="purchage_type" value="Owned"> Owned<br><br>
+                 <input type="radio" name="purchage_type" value="Leased"> Leased<br><br>
+                <input type="radio" name="purchage_type" value="Financed"> Financed<br><br>
+            </div>
+            </div>  
+            <div class="row">
+              <div class="col-50">
+                <input type="text" name="satae_registered" required  placeholder="In what state is your vehicle registered?">
+              </div>     
+         </div>
+         <input type="submit" value="SEND" class="btn">
+       </div>
+        </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,56 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    {% include "head.html" %}
+
+</head>
+<body>
+{% include "navbar.html" %}
+
+  <h1>signup page</h1>
+
+  <form method="post" action="">
+    {% csrf_token %}
+    <div class="mb-3">
+      <label for="fullname" class="form-label">full name</label>
+      <input type="text" class="form-control" name="fullname" placeholder="Enter fullname">
+    </div>
+    <div class="mb-3">
+        <label for="name" class="form-label">username</label>
+        <input type="text" class="form-control" name="name" placeholder="Enter username">
+      </div>
+    <div class="mb-3">
+      <label for="phone" class="form-label">Phone</label>
+      <input type="text" class="form-control" name="phone" id="password" placeholder="Enter phone">
+    </div>
+    <div class="mb-3">
+      <label for="email" class="form-label">Email</label>
+      <input type="email" class="form-control" name="email" placeholder="Enter email">
+    </div>
+    <div class="mb-3">
+      <label for="confirm_password" class="form-label"> Password</label>
+      <input type="password" class="form-control" name="password" id="password" placeholder="password">
+    </div>
+    <div class="mb-3">
+        <label for="confirm_password" class="form-label">Confirm Password</label>
+        <input type="password" class="form-control" id="confirm_password"  name="Confirm password">
+      </div>
+    <button type="submit" class="btn btn-primary">sign up</button>
+  </form>
+		
+			
+
+    {% include "footer.html" %}
+    {% include "scripts.html" %}
+</body>
+
+
+</html>
+
+
+
+
