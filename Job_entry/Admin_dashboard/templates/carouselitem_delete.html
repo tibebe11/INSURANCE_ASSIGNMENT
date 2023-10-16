@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+    
+<head>
+    <title>CarouselItem Detail</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container">
+        <h1>CarouselItem Detail</h1>
+        <p>Title: {{ carousel_item.title }}</p>
+        <p>Description: {{ carousel_item.description }}</p>
+        <p>Image: <img src="{{ carousel_item.image.url }}" alt="{{ carousel_item.title }}"></p>
+        
+        <h2>Delete CarouselItem</h2>
+        <p>Are you sure you want to delete this CarouselItem?</p>
+        
+        <form method="post" action="{% url 'carouselitem_delete' carousel_item.pk %}">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-danger">Delete</button>
+            <a href="{% url 'carouselitem_detail' carousel_item.pk %}" class="btn btn-secondary">Cancel</a>
+        </form>
+    </div>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

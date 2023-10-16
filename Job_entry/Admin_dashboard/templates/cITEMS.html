@@ -1,0 +1,52 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Manage CarouselItems</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Create CarouselItem</h1>
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="image">Image:</label>
+                <input type="file" class="form-control-file" id="image" name="image" required>
+            </div>
+            <div class="form-group">
+                <label for="title">Title:</label>
+                <input type="text" class="form-control" id="title" name="title" required>
+            </div>
+            <div class="form-group">
+                <label for="description">Description:</label>
+                <textarea class="form-control" id="description" name="description" rows="3" required></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary">Save</button>
+        </form>
+        
+        <h1>CarouselItems</h1>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Title</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for item in carousel_items %}
+                <tr>
+                    <td>{{ forloop.counter }}</td>
+                    <td>{{ item.title }}</td>
+                    <td>
+                        <a href="{% url 'carouselitem_detail' item.id %}" class="btn btn-primary btn-sm">View Detail</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

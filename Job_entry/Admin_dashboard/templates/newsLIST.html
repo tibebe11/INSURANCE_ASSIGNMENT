@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Create and View News Articles</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Create News Article</h1>
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="image">Image</label>
+                <input type="file" name="image" class="form-control-file" id="image">
+            </div>
+            <div class="form-group">
+                <label for="title">Title</label>
+                <input type="text" name="title" class="form-control" id="title">
+            </div>
+            <div class="form-group">
+                <label for="description">Description</label>
+                <textarea name="description" class="form-control" id="description"></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary">Create Article</button>
+        </form>
+
+        <hr>
+
+        <h2>News Articles</h2>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Title</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for article in news_articles %}
+                    <tr>
+                        <td>{{ forloop.counter }}</td>
+                        <td>{{ article.title }}</td>
+                        <td>
+                            <a href="{% url 'article_detail' article.id %}" class="btn btn-primary">View Details</a>
+                        </td>
+                    </tr>
+                {% empty %}
+                    <tr>
+                        <td colspan="3">No articles available</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+</body>
+</html>

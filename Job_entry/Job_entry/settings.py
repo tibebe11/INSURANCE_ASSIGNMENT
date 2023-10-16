@@ -38,10 +38,14 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    
     'Job_app',
-     'fontawesome_5',
-      'ckeditor',
-      'users',
+     'accounts',
+    'fontawesome_5',
+    'ckeditor',
+    'news',
+    'Admin_dashboard',
+      
 ]
 
 MIDDLEWARE = [
@@ -55,11 +59,11 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'Job_entry.urls'
-
+import os
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': ['templates'],
+        'DIRS': [os.path.join(BASE_DIR, 'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -116,7 +120,7 @@ USE_I18N = True
 
 USE_TZ = True
 
-import os
+
 from .juzmin import JAZZMIN_SETTINGS
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
@@ -130,5 +134,16 @@ STATICFILES_DIRS = (
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+AUTH_USER_MODEL = 'accounts.CustomUser'
+
+
+
 
 JAZZMIN_SETTINGS = JAZZMIN_SETTINGS
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_HOST_USER = 'tibebetilahun11@gmail.com'  # Your Gmail email address
+EMAIL_HOST_PASSWORD = 'tibeman@0987!'  # Your Gmail password
+EMAIL_USE_TLS = True
+DEFAULT_FROM_EMAIL = 'tibebetilahun11@gmail.com'

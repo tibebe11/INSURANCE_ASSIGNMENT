@@ -1,56 +1,44 @@
-{% load static %}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    {% include "head.html" %}
-
-</head>
-<body>
-{% include "navbar.html" %}
-
-  <h1>signup page</h1>
-
-  <form method="post" action="">
-    {% csrf_token %}
-    <div class="mb-3">
-      <label for="fullname" class="form-label">full name</label>
-      <input type="text" class="form-control" name="fullname" placeholder="Enter fullname">
+<form method="POST" action="{% url 'register' %}">
+  {% csrf_token %}
+  <div class="row">
+    <div class="col-md mb-3">
+      <label class="small" for="{{ form.full_name.id_for_label }}">Full Name: {% for err in form.full_name.errors %}<small class="text-warning fw-bold">{{ err }}</small>{% endfor %}</label>
+      {{ form.full_name }}
     </div>
-    <div class="mb-3">
-        <label for="name" class="form-label">username</label>
-        <input type="text" class="form-control" name="name" placeholder="Enter username">
-      </div>
-    <div class="mb-3">
-      <label for="phone" class="form-label">Phone</label>
-      <input type="text" class="form-control" name="phone" id="password" placeholder="Enter phone">
+    <div class="col-md mb-3">
+      <label class="small" for="{{ form.username.id_for_label }}">Username: {% for err in form.username.errors %}<small class="text-warning fw-bold">{{ err }}</small>{% endfor %}</label>
+      {{ form.username }}
     </div>
-    <div class="mb-3">
-      <label for="email" class="form-label">Email</label>
-      <input type="email" class="form-control" name="email" placeholder="Enter email">
+  </div>
+  <div class="row">
+    <div class="col-md mb-3">
+      <label class="small" for="{{ form.phone_number.id_for_label }}">Phone Number: {% for err in form.phone_number.errors %}<small class="text-warning fw-bold">{{ err }}</small>{% endfor %}</label>
+      {{ form.phone_number }}
     </div>
-    <div class="mb-3">
-      <label for="confirm_password" class="form-label"> Password</label>
-      <input type="password" class="form-control" name="password" id="password" placeholder="password">
+    <div class="col-md mb-3">
+      <label class="small" for="{{ form.email.id_for_label }}">Email: {% for err in form.email.errors %}<small class="text-warning fw-bold">{{ err }}</small>{% endfor %}</label>
+      {{ form.email }}
     </div>
-    <div class="mb-3">
-        <label for="confirm_password" class="form-label">Confirm Password</label>
-        <input type="password" class="form-control" id="confirm_password"  name="Confirm password">
-      </div>
-    <button type="submit" class="btn btn-primary">sign up</button>
-  </form>
-		
-			
+  </div>
+  <div class="mb-3">
+    <label class="small" for="{{ form.password1.id_for_label }}">Password: {% for err in form.password1.errors %}<small class="text-warning fw-bold">{{ err }}</small>{% endfor %}</label>
+    {{ form.password1 }}
+  </div>
+  <div class="mb-3">
+    <label class="small" for="{{ form.password2.id_for_label }}">Confirm Password: {% for err in form.password2.errors %}<small class="text-warning fw-bold">{{ err }}</small>{% endfor %}</label>
+    {{ form.password2 }}
+  </div>
+  <div class="mb-3 form-check">
+    <input type="checkbox" class="form-check-input" id="id_is_superuser" name="is_superuser">
+    <label class="form-check-label" for="id_is_superuser">Create as superuser</label>
+  </div>
+  <div class="text-center">
+    <button type="submit" class="btn btn-primary">Sign Up</button>
+  </div>
+</form>
 
-    {% include "footer.html" %}
-    {% include "scripts.html" %}
-</body>
+<div class="text-center">
+  <a href="{% url 'login' %}" class="btn btn-primary">Login</a>
+</div
 
-
-</html>
-
-
-
-
+0942274410  

@@ -1,0 +1,21 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>CarouselItem Detail</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container">
+        <h1>CarouselItem Detail</h1>
+        <p><strong>Image:</strong></p>
+        <img src="{{ carousel_item.image.url }}" alt="{{ carousel_item.title }}">
+        <p><strong>Title:</strong> {{ carousel_item.title }}</p>
+        <p><strong>Description:</strong> {{ carousel_item.description }}</p>
+        
+        <a href="{% url 'carouselitem_update' carousel_item.id %}" class="btn btn-primary">Update</a>
+        <a href="{% url 'carouselitem_delete' carousel_item.pk %}" class="btn btn-danger">Delete</a>
+    </div>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

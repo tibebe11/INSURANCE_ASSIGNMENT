@@ -1,0 +1,17 @@
+<form method="POST" action="{% url 'login' %}">
+  {% csrf_token %}
+  <div class="mb-3">
+    <label class="small" for="{{ form.username.id_for_label }}">Username: {% for err in form.username.errors %}<small class="text-warning fw-bold">{{ err }}</small>{% endfor %}</label>
+    {{ form.username }}
+  </div>
+  <div class="mb-3">
+    <label class="small" for="{{ form.password.id_for_label }}">Password: {% for err in form.password.errors %}<small class="text-warning fw-bold">{{ err }}</small>{% endfor %}</label>
+    {{ form.password }}
+  </div>
+  <div class="text-center">
+    <button type="submit" class="btn btn-primary">Login</button>
+  </div>
+</form>
+<div class="text-center mt-3">
+  <a href="{% url 'registration' %}" class="text-decoration-none">Create an account</a>
+</div>

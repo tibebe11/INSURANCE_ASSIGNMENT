@@ -1,6 +1,7 @@
 from django.db import models
 from ckeditor.fields import RichTextField
 
+
 # Create your models here.
 class ContactMessage(models.Model):
    name  = models.CharField(max_length = 200)
@@ -29,7 +30,7 @@ class CarouselItem(models.Model):
         return self.title
 class Category(models.Model):
     name = models.CharField(max_length=200)
-    vacancy_count = models.IntegerField()
+    
    
 
     def __str__(self):
@@ -82,3 +83,27 @@ class Testimonial(models.Model):
 
     def __str__(self):
         return self.client_name
+
+from django.db import models
+
+from django.db import models
+
+class CarInsurancePolicy(models.Model):
+    insured_name = models.CharField(max_length=100)
+    phone = models.CharField(max_length=10, default='0989870208')
+    email = models.EmailField(default='tibebetilahun11@gmail.com')
+    effective_date = models.DateField()
+    expiry_date = models.DateField()
+    vehicle_make = models.CharField(max_length=100)
+    vehicle_model = models.CharField(max_length=100)
+    vehicle_year = models.PositiveIntegerField()
+    vin = models.CharField(max_length=17)
+    driver_name = models.CharField(max_length=100)
+    driver_age = models.PositiveIntegerField()
+    previous_status = models.CharField(max_length=100)
+    agreement = models.BooleanField()
+    
+
+    def __str__(self):
+        return self.insured_name
+

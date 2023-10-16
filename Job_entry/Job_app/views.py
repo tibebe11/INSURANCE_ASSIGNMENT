@@ -1,12 +1,69 @@
 from django.shortcuts import render,get_object_or_404,redirect
 from django.http import HttpResponse
-
+from Admin_dashboard.models import Insurance_Form
+from Admin_dashboard.models import CarouselItem
+from .forms import ContactForm
 from django.contrib.auth.hashers import make_password
 from django.urls import reverse
 from django.contrib.auth.models import User
+from .forms import CarInsurancePolicyForm
 from django.contrib  import messages
-from .models import ContactMessage,ContactInformation,CarouselItem,Category,AboutText,Job,JobApplication,Testimonial
+from .models import ContactMessage,ContactInformation,Category,AboutText,Job,JobApplication,Testimonial,CarInsurancePolicy
+from django.shortcuts import render, redirect
+
+
+
+
+    
+
+
 # Create your views here.
+
+#def login(request):
+#    form = Login_Form(request.POST or None)
+#    if request.method == 'POST':
+#        if form.is_valid():
+#            email = form.cleaned_data['email']
+#            password = form.cleaned_data['password']
+#            user = authenticate(request, email=email,password=password)
+#        if (user is not None and user.is_superuser) :
+#            login(request, user)
+#            return redirect('admin-dashboard')
+#       
+#           
+#      
+#        else:
+#            messages.error(request, 'Invalid Password or Email')
+#    context = {
+#        'form' : form
+#    }
+#    return render(request, 'signin.html', context)
+#
+#
+#def logout(request):
+#    logout(request)
+#    return render(request, 'signout.html')
+#
+#def signup(request):
+#    form = CustomUserCreationForm(request.POST or None)
+#    if request.method == 'POST':
+#        if form.is_valid():
+#            user = form.save(commit=False)
+#            user.is_candidate = True
+#            user.save()
+#            messages.success(request, 'Your Account has been Successfully Created! Please Login')
+#            return redirect('/login')    
+#    context = {
+#        'form' : form
+#    }
+#
+#    return render(request, 'signup.html', context)
+#
+
+
+
+
+
 def testimonial(request):
    info = ContactInformation.objects.all().first()
    testimonials = Testimonial.objects.all()
@@ -22,14 +79,18 @@ def about(request):
    info = ContactInformation.objects.all().first()
    about = AboutText.objects.first() 
    return render(request, 'about.html',{'about': about,'info':info})
+
 def catagory(request):
    info = ContactInformation.objects.all().first()
    categories = Category.objects.all()
    return render(request, 'category.html', {'categories': categories,'info':info})
 def contact(request):
    info = ContactInformation.objects.all().first()
+
    if request.method == 'POST':
       
+      form = ContactForm(request.POST)
+   
       name1  = request.POST.get('name')
       email1  = request.POST.get('email')
       subject1  = request.POST.get('subject')
@@ -43,6 +104,7 @@ def contact(request):
       contact.message =message1
       
       contact.save()
+      form = ContactForm()
          
       
       
@@ -50,68 +112,61 @@ def contact(request):
       pass
   
    return render(request, 'contact.html',{'info':info})
-def job_detail(request,job_id):
-
-   info = ContactInformation.objects.all().first()
-   job = get_object_or_404(Job, id=job_id)
-   if request.method == 'POST':
-        name = request.POST.get('name')
-       
-        email = request.POST.get('email')
-        portfolio_website = request.POST.get('portfolio_website')
-        resume = request.FILES.get('resume')
-        cover_letter = request.POST.get('cover_letter')
-        job_app = JobApplication()
-        job_app.job=job
-        job_app.name=name
-        job_app.email=email
-        job_app.portfolio_website=portfolio_website
-        job_app.resume=resume
-        job_app.cover_letter=cover_letter
-        
-        job_app.save()
-
-       
-
-        
-
-   return render(request, 'jobdetail.html',{'info':info,'job': job})
-
+def job_detail(request, insurance_id):
+    insurance_instance = get_object_or_404(Insurance_Form, id=insurance_id)
+    # Add any additional logic or data retrieval you need
+  
+    return render(request, 'jobdetail.html', {'insurance': insurance_instance})
 
 def job_list(request):
-   info = ContactInformation.objects.all().first()
-   jobs = Job.objects.all()
-   return render(request, 'joblist.html', {'jobs': jobs,'info':info})
-
-
-
-def login(request):
-   
-    return render(request, 'login.html')
-
-
-def signin(request):
-    return render(request, 'signin.html')
-
-def signup(request):
-   if request.method == 'POST':
-      fullname = request.POST['fullname']
-      name = request.POST['name']
-      email = request.POST['email']
-      
-      phone = request.POST['phone']
-      password = request.POST['password']
-      password2 = request.POST['password']
-      
-        # Check if a user with this username already exists
- 
+    
+    insure = Insurance_Form.objects.all()
   
-   return render(request, 'signup.html')
-
-def signout(request):
-    pass
+    return render(request, 'joblist.html',  {'insure': insure})
 
 
+def carform(request):
+    if request.method == 'POST':
+        insured_name = request.POST.get('insuredName')
+        phone = request.POST.get('phone')
+        email = request.POST.get('email')
+        effective_date = request.POST.get('effectiveDate')
+        expiry_date = request.POST.get('expiryDate')
+        vehicle_make = request.POST.get('vehicleMake')
+        vehicle_model = request.POST.get('vehicleModel')
+        vehicle_year = request.POST.get('vehicleYear')
+        vin = request.POST.get('vin')
+        driver_name = request.POST.get('driverName')
+        driver_age = request.POST.get('driverAge')
+        previous_status = request.POST.get('previousStatus')
+        agreement = request.POST.get('agreement') == 'agree'
+        
+         # Get the uploaded file
+        
+        # Save the form data to the database
+        car_insurance = CarInsurancePolicy(
+            insured_name=insured_name,
+            phone=phone,
+            email=email,
+            effective_date=effective_date,
+            expiry_date=expiry_date,
+            vehicle_make=vehicle_make,
+            vehicle_model=vehicle_model,
+            vehicle_year=vehicle_year,
+            vin=vin,
+            driver_name=driver_name,
+            driver_age=driver_age,
+            previous_status=previous_status,
+            agreement=agreement,
+            
+        )
+        car_insurance.save()
+        
+        messages.success(request, 'You have successfully submitted the form.')  # Success message
+        
+        return redirect('carform')  # Redirect back to the form page
+    
+    return render(request, 'forms.html')
 
 
 
